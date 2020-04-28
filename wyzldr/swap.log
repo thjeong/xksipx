@@ -1,0 +1,67 @@
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Mon Mar 10 08:50:14 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+Control File:   ./regi_test.ctl
+Data File:      F63FD44.REGI
+  Bad File:     ./swap.bad
+  Discard File:  none specified
+ 
+ (Allow all discards)
+
+Number to load: ALL
+Number to skip: 0
+Errors allowed: 50
+Bind array:     1536 rows, maximum of 4096000 bytes
+Continuation:    none specified
+Path used:      Conventional
+Silent options: FEEDBACK
+Table SN_DAY_REGI_TEST, loaded from every logical record.
+Insert option in effect for this table: APPEND
+
+   Column Name                  Position   Len  Term Encl Datatype
+------------------------------ ---------- ----- ---- ---- ---------------------
+P_SEPA                              FIRST     *   `       CHARACTER            
+FILE_NM                              NEXT     *   `       CHARACTER            
+SEQNO                                NEXT     *   `       CHARACTER            
+CR_TIME                              NEXT     *   `       DATETIME YYYY-MM-DD HH24:MI:SS.FF9
+SRC_IP                               NEXT     *   `       CHARACTER            
+DEST_IP                              NEXT     *   `       CHARACTER            
+MTHD_NM                              NEXT     *   `       CHARACTER            
+TO_NO                                NEXT     *   `       CHARACTER            
+TO_DOM                               NEXT     *   `       CHARACTER            
+FROM_NO                              NEXT     *   `       CHARACTER            
+FROM_DOM                             NEXT     *   `       CHARACTER            
+CALLID                               NEXT     *   `       CHARACTER            
+SRC_PORT                             NEXT     *   `       CHARACTER            
+DEST_PORT                            NEXT     *   `       CHARACTER            
+C_SEQ                                NEXT     *   `       CHARACTER            
+C_MTHD                               NEXT     *   `       CHARACTER            
+UA                                   NEXT     *   `       CHARACTER            
+EXPIRE                               NEXT     *   `       CHARACTER            
+BASE_PTR                             NEXT     *   `       CHARACTER            
+OFFSET                               NEXT     *   `       CHARACTER            
+
+value used for ROWS parameter changed from 1536 to 793
+
+Table SN_DAY_REGI_TEST:
+  250723 Rows successfully loaded.
+  0 Rows not loaded due to data errors.
+  0 Rows not loaded because all WHEN clauses were failed.
+  0 Rows not loaded because all fields were null.
+
+
+Space allocated for bind array:                4091880 bytes(793 rows)
+Read   buffer bytes: 4096000
+
+Total logical records skipped:          0
+Total logical records read:        250723
+Total logical records rejected:         0
+Total logical records discarded:        0
+
+Run began on Mon Mar 10 08:50:14 2008
+Run ended on Mon Mar 10 08:50:19 2008
+
+Elapsed time was:     00:00:05.54
+CPU time was:         00:00:04.30

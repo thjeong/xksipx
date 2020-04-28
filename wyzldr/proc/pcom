@@ -1,0 +1,6 @@
+rm $1.c $1.o $1.lis
+proc CHAR_MAP=STRING iname=progname iname=$1.pc oname=$1.c
+/usr/bin/gcc  -O3  -trigraphs -fPIC -I/u01/app/oracle/product/10.1.0/db_1/precomp/public -I/u01/app/oracle/product/10.1.0/db_1/rdbms/public -I/u01/app/oracle/product/10.1.0/db_1/plsql/public -DLINUX -DORAX86_64 -D_GNU_SOURCE -D_LARGEFILE64_SOURCE=1 -D_LARGEFILE_SOURCE=1 -DSLTS_ENABLE -DSLMXMX_ENABLE -D_REENTRANT -DNS_THREADS -DLONG_IS_64 -fno-strict-aliasing -DSS_64BIT_SERVER     -c $1.c 
+
+#/usr/bin/gcc -o $1 $1.o -L/u01/app/oracle/product/10.1.0/db_1/lib/ -lclntsh `cat /u01/app/oracle/product/10.1.0/db_1/lib/ldflags`   `cat /u01/app/oracle/product/10.1.0/db_1/lib/sysliblist` -ldl -lm  
+

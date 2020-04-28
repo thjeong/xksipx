@@ -1,0 +1,56 @@
+#!/bin/sh
+
+input=$(echo $1 | tr "[a-z]" "[A-Z]")
+pid=`ps -ef | grep packetdb_uploader | awk '{ print $2 }'`
+let i=0
+
+for test in $pid
+do
+   let "i=i+1"
+done
+
+if [ $# -ge 1 ]
+then
+   if [ "$input" = "START" ]
+   then
+       if [ "$i" -le "1" ]
+       then
+           ./packetdb_uploader $2 &
+           echo "Daemon running now!"
+       else
+           echo "Daemon processor is exist"
+      fi
+   elif [ "$input" = "STOP" ]
+   then
+       if [ "$i" -ge "2" ]
+       then
+            for testppid in $pid
+            do
+              kill -9 $pid
+              echo "Daemon processor is end!"
+              break
+            done
+       else
+           echo "Daemon processor is none!"
+       fi
+   elif [ "$input" = "RESTART" ]
+   then
+       if [ "$i"  -eq "2" ]
+       then
+           for testppid in $pid
+           do
+              kill -9 $pid
+              echo "Daemon running stop now, for restarting!"
+              break
+           done
+           ./packetdb_uploader $2 &
+           echo "Daemon restart now!"
+       else
+           ./packetdb_uploader $2 &
+           echo "Daemon restart now!"
+       fi
+   fi
+else
+    echo "Usage : oneview start/stop/restart "
+    exit
+fi

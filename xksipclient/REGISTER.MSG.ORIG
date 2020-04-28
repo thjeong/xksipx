@@ -1,0 +1,12 @@
+REGISTER sip:sniproxy.samsung070.com:5060 SIP/2.0
+Max-Forwards: 70
+Content-Length: 0
+Via: SIP/2.0/UDP 192.168.1.3:5060;branch=z9hG4bK5876488d9
+Call-ID: 0e45f58414ec462194a343ee4302110a@192.168.1.3
+From: <sip:07070156894@sniproxy.samsung070.com:5060>;tag=4b92c6e7e41bc86
+To: <sip:07070156894@sniproxy.samsung070.com:5060>
+CSeq: 66 REGISTER
+Contact: <sip:07070156894@192.168.1.3:5060;transport=udp>;expires=3600
+Allow: NOTIFY, REFER, OPTIONS, MESSAGE, INVITE, ACK, CANCEL, BYE, UPDATE, PRACK, INFO
+Authorization:Digest response="c111473c281ccb9b7ba4aee4028c6ff7",nc=00000369,username="07070156894",realm="BroadWorks",nonce="BroadWorksXftmwc4gmTyqqjx8BW",algorithm=MD5,qop=auth,cnonce="1a398f883af0ff817907027f06911dd3",uri="sip:sniproxy.samsung070.com:5060"
+User-Agent: DasanNetworks_H250.1.1125

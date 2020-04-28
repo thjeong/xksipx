@@ -1,0 +1,12 @@
+load data 
+append 
+into table xk_host_stat
+fields terminated by '`' 
+(
+  ST_DT      CHAR,
+  HOST_IP     CHAR,
+  REG_REQ    INTEGER EXTERNAL,
+  REG_SUCC    INTEGER EXTERNAL,
+  INV_REQ    INTEGER EXTERNAL,
+  INV_SUCC   INTEGER EXTERNAL
+)

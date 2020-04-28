@@ -1,0 +1,46 @@
+#include <strings.h>
+#include "types.h"
+
+EXEC SQL BEGIN DECLARE SECTION;
+
+    VARCHAR uid[20];
+    VARCHAR pwd[20];
+    char stat_host[256][64];
+
+EXEC SQL END DECLARE SECTION;
+EXEC SQL INCLUDE SQLCA;
+
+void main(void)
+{
+    int num_ret = 0;
+	int i = 0;
+
+	for(i = 0; i < 256; i++) memset(stat_host[i],0,64);
+
+    /* log into ORACLE */
+    strcpy(uid.arr, "voip");                       /* copy the user name */
+    uid.len = strlen(uid.arr);
+    strcpy(pwd.arr, "dusrnth");                       /* copy the password */
+    pwd.len = strlen(pwd.arr);
+
+    EXEC SQL CONNECT :uid IDENTIFIED BY :pwd;
+
+    printf("Connected to ORACLE user : %s\n", uid.arr);
+
+    EXEC SQL DECLARE C1 CURSOR FOR
+        SELECT HOST_IP FROM SN_HOST_LIST;
+
+    EXEC SQL OPEN C1;
+
+	EXEC SQL WHENEVER NOT FOUND GOTO endloop;
+	while(1) {
+        EXEC SQL FETCH C1 INTO :stat_host[num_ret];
+	num_ret++;
+	}
+
+endloop:
+for(i = 0; i < num_ret; i++) {
+printf("%s\n", stat_host[i]);
+}
+    return 1;
+}

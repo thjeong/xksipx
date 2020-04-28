@@ -1,0 +1,84 @@
+2008_04_02 20:30:50 : WYZBFRLD started.
+2008_04_02 20:47:10 : WYZBFRLD started.
+2008_04_02 20:47:32 : WYZBFRLD started.
+2008_04_02 20:49:21 : WYZBFRLD started.
+2008_04_02 20:49:55 : WYZBFRLD started.
+2008_04_02 20:50:05 : WYZBFRLD started.
+2008_04_02 20:51:07 : WYZBFRLD started.
+2008_04_02 20:51:12 : WYZBFRLD started.
+2008_04_02 20:51:41 : WYZBFRLD started.
+2008_04_02 20:53:47 : WYZBFRLD started.
+2008_04_02 20:53:47 : [START] F7163D0 loading...
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:53:47 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:53:48 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+2008_04_02 20:53:48 : [ERROR] F7163D0 has not loaded!!! 
+2008_04_02 20:54:11 : WYZBFRLD started.
+2008_04_02 20:54:11 : [START] F7163D0 loading...
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:54:11 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:54:12 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+2008_04_02 20:54:12 : [COMPLETE] F7163D0 loaded.
+2008_04_02 20:54:12 : [START] F7163D0 loading...
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:54:12 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:54:12 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+2008_04_02 20:54:12 : [COMPLETE] F7163D0 loaded.
+2008_04_02 20:54:12 : [START] F7163D0 loading...
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:54:12 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:54:12 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+2008_04_02 20:54:12 : [COMPLETE] F7163D0 loaded.
+2008_04_02 20:54:13 : [START] F7163D0 loading...
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:54:13 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:54:13 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+2008_04_02 20:54:13 : [COMPLETE] F7163D0 loaded.
+2008_04_02 20:58:01 : WYZBFRLD started.
+2008_04_02 20:58:01 : [START] F7163D0 loading...
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:58:01 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+SQL*Loader: Release 10.2.0.1.0 - Production on Wed Apr 2 20:58:01 2008
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+2008_04_02 20:58:01 : [COMPLETE] F7163D0 loaded.

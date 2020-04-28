@@ -1,0 +1,96 @@
+#
+# Makefile Configuration
+# Date : Feb, 25 2008
+# Make : xkstyle
+#
+
+CC = gcc
+
+
+CFLAGS = -m64 -Dlinux -g
+CPPFLAGS = -I /u01/app/oracle/product/10.1.0/db_1/rdbms/public
+CLIBS = -L /u01/app/oracle/product/10.1.0/db_1/lib -L /u01/app/oracle/product/10.1.0/db_1/rdbms/lib -lclntsh
+
+#CFLAGS = -m32 -Dlinux 
+#CPPFLAGS = -I /u01/app/oracle/product/10.2.0/db_2/rdbms/public
+#CLIBS = -L /u01/app/oracle/product/10.2.0/db_2/lib32 -L /u01/app/oracle/product/10.2.0/db_2/rdbms/lib32 -lclntsh
+
+SRCS = parsing.c proc.c util.c engine.c
+OBJS = $(SRCS:.c=.o)
+TARGET = wyzldr
+
+$(TARGET): $(OBJS)
+	$(CC) -o $(TARGET) $(CFLAGS) $(OBJS) $(CLIBS)
+
+clean:
+	rm -f *.o wyzldr
+
+# DO NOT DELETE
+
+parser.o: /usr/include/stdio.h /usr/include/features.h
+parser.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+parser.o: /usr/lib/gcc/x86_64-redhat-linux/3.4.6/include/stddef.h
+parser.o: /usr/include/bits/types.h /usr/include/bits/wordsize.h
+parser.o: /usr/include/bits/typesizes.h /usr/include/libio.h
+parser.o: /usr/include/_G_config.h /usr/include/wchar.h
+parser.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+parser.o: /usr/lib/gcc/x86_64-redhat-linux/3.4.6/include/stdarg.h
+parser.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+parser.o: /usr/include/string.h /usr/include/stdlib.h /usr/include/sys/time.h
+parser.o: /usr/include/time.h /usr/include/bits/time.h
+parser.o: /usr/include/sys/select.h /usr/include/bits/select.h
+parser.o: /usr/include/bits/sigset.h /usr/include/fcntl.h
+parser.o: /usr/include/bits/fcntl.h /usr/include/sys/types.h
+parser.o: /usr/include/dirent.h /usr/include/bits/dirent.h
+getenv.o: /usr/include/stdio.h /usr/include/features.h
+getenv.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+getenv.o: /usr/lib/gcc/x86_64-redhat-linux/3.4.6/include/stddef.h
+getenv.o: /usr/include/bits/types.h /usr/include/bits/wordsize.h
+getenv.o: /usr/include/bits/typesizes.h /usr/include/libio.h
+getenv.o: /usr/include/_G_config.h /usr/include/wchar.h
+getenv.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+getenv.o: /usr/lib/gcc/x86_64-redhat-linux/3.4.6/include/stdarg.h
+getenv.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+getenv.o: /usr/include/string.h /usr/include/stdlib.h /usr/include/sys/time.h
+getenv.o: /usr/include/time.h /usr/include/bits/time.h
+getenv.o: /usr/include/sys/select.h /usr/include/bits/select.h
+getenv.o: /usr/include/bits/sigset.h
+util.o: /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h
+util.o: /usr/include/gnu/stubs.h
+util.o: /usr/lib/gcc/x86_64-redhat-linux/3.4.6/include/stddef.h
+util.o: /usr/include/bits/types.h /usr/include/bits/wordsize.h
+util.o: /usr/include/bits/typesizes.h /usr/include/libio.h
+util.o: /usr/include/_G_config.h /usr/include/wchar.h
+util.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+util.o: /usr/lib/gcc/x86_64-redhat-linux/3.4.6/include/stdarg.h
+util.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+util.o: /usr/include/string.h /usr/include/stdlib.h /usr/include/sys/time.h
+util.o: /usr/include/time.h /usr/include/bits/time.h
+util.o: /usr/include/sys/select.h /usr/include/bits/select.h
+util.o: /usr/include/bits/sigset.h
+runsql.o: /usr/include/stdio.h /usr/include/features.h
+runsql.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+runsql.o: /usr/lib/gcc/x86_64-redhat-linux/3.4.6/include/stddef.h
+runsql.o: /usr/include/bits/types.h /usr/include/bits/wordsize.h
+runsql.o: /usr/include/bits/typesizes.h /usr/include/libio.h
+runsql.o: /usr/include/_G_config.h /usr/include/wchar.h
+runsql.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+runsql.o: /usr/lib/gcc/x86_64-redhat-linux/3.4.6/include/stdarg.h
+runsql.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+runsql.o: /usr/include/string.h /usr/include/stdlib.h /usr/include/sys/time.h
+runsql.o: /usr/include/time.h /usr/include/bits/time.h
+runsql.o: /usr/include/sys/select.h /usr/include/bits/select.h
+runsql.o: /usr/include/bits/sigset.h
+uploader.o: /usr/include/stdio.h /usr/include/features.h
+uploader.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+uploader.o: /usr/lib/gcc/x86_64-redhat-linux/3.4.6/include/stddef.h
+uploader.o: /usr/include/bits/types.h /usr/include/bits/wordsize.h
+uploader.o: /usr/include/bits/typesizes.h /usr/include/libio.h
+uploader.o: /usr/include/_G_config.h /usr/include/wchar.h
+uploader.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+uploader.o: /usr/lib/gcc/x86_64-redhat-linux/3.4.6/include/stdarg.h
+uploader.o: /usr/include/bits/stdio_lim.h /usr/include/bits/sys_errlist.h
+uploader.o: /usr/include/string.h /usr/include/stdlib.h
+uploader.o: /usr/include/sys/time.h /usr/include/time.h
+uploader.o: /usr/include/bits/time.h /usr/include/sys/select.h
+uploader.o: /usr/include/bits/select.h /usr/include/bits/sigset.h

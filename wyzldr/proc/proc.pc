@@ -1,0 +1,158 @@
+#include <string.h>
+#include "types.h"
+
+EXEC SQL BEGIN DECLARE SECTION;
+
+VARCHAR file_nm[64];
+VARCHAR current_fg[8];
+VARCHAR host_ip[64];
+statistics *host_stat[6][512];
+
+EXEC SQL END DECLARE SECTION;
+EXEC SQL INCLUDE SQLCA;
+
+int connect_oracle()
+{
+        EXEC SQL BEGIN DECLARE SECTION;
+        char            *username = "voip/dusrnth";
+        EXEC SQL END DECLARE SECTION;
+                                                
+    	EXEC SQL CONNECT :username;  
+    	if (sqlca.sqlcode == 0)                     
+    	{                                            
+        	return(0);                       
+    	}                                           
+    	else                                        
+    	{                                           
+        	printf("Cannot connect as VOIP.\n"); 
+        	return -1;
+    	}
+}   
+
+/* ================================================================== */
+void disconnect_oracle()
+{
+  EXEC SQL COMMIT WORK RELEASE; 
+}
+
+unsigned long get_filename_to_ftp_parse(unsigned long current_n2)
+{
+	unsigned long n2;
+	char srcname[64];
+
+	// sprintf(srcname, "'%X'", current_n2);
+	connect_oracle();
+	EXEC SQL SELECT FILE_NM INTO :file_nm FROM (
+		SELECT FILE_NM FROM STAT_TOTAL
+			WHERE -- FILE_NM > :srcname AND
+			PROC_FG = 'D'
+			ORDER BY FILE_NM DESC
+		) WHERE ROWNUM < 2;
+
+	/* if there is no data */
+	if ( sqlca.sqlcode != -1405 && sqlca.sqlcode != 0 ) {
+		return (0);
+	} else {
+		n2 = strtoul(file_nm.arr, NULL, 16);
+		return n2;
+	}
+
+
+	/* if there is no 'D' */
+	return n2 + 60;
+
+	/* if there is no data */
+	if ( sqlca.sqlcode != -1405 && sqlca.sqlcode != 0 ) {
+		EXEC SQL SELECT FILE_NM INTO :file_nm FROM (
+		SELECT FILE_NM FROM STAT_TOTAL
+			WHERE FILE_NM > :srcname 
+			ORDER BY FILE_NM DESC
+		) WHERE ROWNUM < 2;
+		if ( sqlca.sqlcode != -1405 && sqlca.sqlcode != 0 ) {
+			disconnect_oracle();
+			return (-1);
+		} else {
+			n2 = strtoul(file_nm.arr, NULL, 16);
+			disconnect_oracle();
+			return (n2 + 60);
+		}
+	} else {
+		n2 = strtoul(file_nm.arr, NULL, 16);
+		disconnect_oracle();
+		return n2;
+	}
+}
+
+unsigned long get_filename_to_parse(unsigned long current_n2)
+{
+	unsigned long n2;
+	char srcname[64];
+	sprintf(srcname, "'%X'", current_n2);
+
+	connect_oracle();
+	EXEC SQL SELECT FILE_NM INTO :file_nm FROM (
+		SELECT FILE_NM FROM STAT_TOTAL
+			WHERE FILE_NM > :srcname
+			ORDER BY FILE_NM DESC
+	) WHERE ROWNUM < 2;
+
+	if ( sqlca.sqlcode != -1405 && sqlca.sqlcode != 0 ) {
+		disconnect_oracle();
+		return (0);
+	} else {
+		n2 = strtoul(file_nm.arr, NULL, 16);
+		disconnect_oracle();
+		return n2;
+	}
+}
+
+int insert_stat_total(char * inserted_file, char * proc_fg)
+{
+	connect_oracle();
+	EXEC SQL SELECT PROC_FG INTO :current_fg FROM STAT_TOTAL WHERE FILE_NM = :inserted_file;
+	/* if there is no data */
+	if ( sqlca.sqlcode != -1405 && sqlca.sqlcode != 0 ) {
+		EXEC SQL INSERT INTO STAT_TOTAL VALUES(0, 0, 0, 0, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'), :inserted_file, :proc_fg);
+	} else {
+		EXEC SQL UPDATE STAT_TOTAL SET PROC_FG = :proc_fg WHERE FILE_NM = :inserted_file;
+	}
+	EXEC SQL COMMIT WORK;
+	/* It must be here that Error Handling */
+	if(sqlca.sqlcode == 0) {
+		disconnect_oracle();
+		return 1;
+	} else {
+		disconnect_oracle();
+		return 0;
+	}
+}
+
+int get_host_list()
+{
+	int num_ret = 0;
+	int i,j;
+
+	for(i = 0; i < 6; i++) {
+		for(j = 0; j < 512; j++) memset(host_stat[i][j],0,sizeof(statistics));
+	}
+
+	connect_oracle();
+
+	EXEC SQL DECLARE C1 CURSOR FOR
+		SELECT HOST_IP FROM SN_HOST_LIST; 
+	EXEC SQL OPEN C1;
+
+	EXEC SQL WHENEVER NOT FOUND GOTO endloop;
+
+	while(1) {
+                EXEC SQL FETCH C1 INTO :host_ip;
+                for(i = 0; i < 6; i++) memcpy(host_stat[i][num_ret]->src_ip, host_ip.arr, host_ip.len);
+                num_ret++;
+                for(i = 0; i < 6; i++) memcpy(host_stat[i][num_ret]->dst_ip, host_ip.arr, host_ip.len);
+                num_ret++;
+	}
+
+endloop:
+	disconnect_oracle();
+	return num_ret;
+}

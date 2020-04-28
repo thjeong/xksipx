@@ -1,0 +1,12 @@
+#!/bin/ksh
+
+ftp -n 33.100.7.35 << EOF
+user oracle imsi00
+pass
+bin
+ha
+cd /data2/wyzldr
+put xkftp
+
+EOF
+

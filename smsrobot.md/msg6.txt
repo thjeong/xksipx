@@ -1,0 +1,13 @@
+REGISTER sip:samsung070.com SIP/2.0
+From: <sip:07070156894@samsung070.com>;tag=23-00000000
+To: <sip:07070156894@samsung070.com>
+Contact: <sip:07070156894@203.254.203.13:5080>
+Via: SIP/2.0/UDP 203.254.203.13:5080;branch=z9hG4bK-1
+Call-ID: 23-00000000@203.254.203.13
+CSeq: 1 REGISTER
+User-Agent: XKSTYLE-SMS-ROBOT
+Max-Forwards: 70
+Expires: 3600
+Digest username="07070156894",realm="203.254.210.100",nonce="1168640365",uri="sip:samsung070.com",response="9192ee0a48a9b42cf710c5e3fc8a9fe8",algorithm=MD5,cnonce="253194",nc=00000001,qop=auth
+Content-Length: 0
+

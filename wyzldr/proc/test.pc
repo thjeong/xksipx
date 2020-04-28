@@ -1,0 +1,45 @@
+#include <strings.h>
+#include "types.h"
+
+EXEC SQL BEGIN DECLARE SECTION;
+
+    VARCHAR uid[20];
+    VARCHAR pwd[20];
+	char stat_host[256][64];
+
+EXEC SQL END DECLARE SECTION;
+EXEC SQL INCLUDE SQLCA;
+
+int main()
+{
+        int host_count = 0;
+
+    /* log into ORACLE */
+    strcpy(uid.arr, "voip");                       /* copy the user name */
+    uid.len = strlen(uid.arr);
+    strcpy(pwd.arr, "dusrnth");                       /* copy the password */
+    pwd.len = strlen(pwd.arr);
+
+    EXEC SQL WHENEVER SQLERROR STOP;
+    EXEC SQL CONNECT :uid IDENTIFIED BY :pwd;
+    printf("Connected to ORACLE user : %s\n", uid.arr);
+
+        EXEC SQL DECLARE C1 CURSOR FOR
+                SELECT HOST_IP
+                        FROM SN_HOST_LIST  
+                WHERE HOST_KIND IN ('SBC', 'AS', 'SMS') AND USE_YN = 'Y';
+        EXEC SQL OPEN C1;
+        
+        EXEC SQL WHENEVER NOT FOUND STOP;
+        
+        while(1)
+        {       
+                EXEC SQL FETCH C1 INTO :stat_host;
+                host_count++;
+        }
+        
+        EXEC SQL CLOSE C1;
+        EXEC SQL WHENEVER SQLERROR CONTINUE;   /* don't trap errors */
+        EXEC SQL COMMIT WORK RELEASE;
+        return host_count;
+}
